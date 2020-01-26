@@ -1,0 +1,14 @@
+.carousel-caption{
+	bottom:42%;
+	background-color: black;
+	opacity:50%
+}
+
+.carousel-item h2{
+	margin-bottom: 10px;
+	
+}
+
+img{
+	height: 647px;
+}
