@@ -1,59 +1,107 @@
 import React from 'react';
-import '../styles/Registro.css';
+import { Form, Input, Button, Card,Menu,  Modal, Carousel} from 'antd';
+import Auth from '../services/auth';
+import '../styles/Login.css';
+
 class Login extends React.Component{
-  state={
-    correo:'',
-    clave:''
-  }
+   state={
+     usuario: '',
+     pass: '',
+     visible: false,
+     
+   }
 
-  
-    render(){
-        return(
-          <body id="fondo">
-          <div class="container">
-          <h1>Login</h1>
-        <form action="#" method="POST">
-          <input type="text" placeholder="username" value={this.state.correo}  onChange={(e)=>this.handleChangeInput(e, 'correo')} class="field"/>
-          <input type="password" placeholder="password" value={this.state.clave}  onChange={(e)=>this.handleChangeInput(e, 'clave')} class="field"/>
-          <input type="submit" value="login" class="btn" onClick={this.handleSubmit}/>
-          </form>
-        <div class="pass-link">
-          <a href="#" >Lost your password?</a>
-        </div>	
-      </div>
-      </body>
-        );
+   showModal = () => {
+     this.setState({
+       visible: true,
+     });
+   };
+ 
+   handleOk = e => {
+     console.log(e);
+     this.setState({
+       visible: false,
+     });
+   };
+ 
+   handleCancel = e => {
+     console.log(e);
+     this.setState({
+       visible: false,
+     });
+   };
+   
+   
+    iniciar=()=>{  
+      const {usuario, pass} = this.state;
+        Auth.login(this.state.usuario, this.state.pass); 
+              
     }
+    
 
+    
     handleChangeInput = ($e, input) => {
       const newState = {};
       newState[input] = $e.target.value;
       this.setState(newState);
-     
+      
   };
 
-    handleSubmit=(e)=>{
-      e.preventDefault();
-      fetch('http://localhost:8000/api/login_check', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            username: this.state.correo,
-            password: this.state.clave,
-          })
-          
-        })
-      
 
-  }
+      render() {
+        
+        return (
+        <div>
+            <div className="logo" />
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={['3']}
+        style={{ lineHeight: '64px' }}
+      >
+        <Menu.Item key="1">Polijobs</Menu.Item>
+        <Menu.Item key="2" onClick={this.showModal}>Iniciar Sesión</Menu.Item>
+      </Menu>          
 
+      <Modal
+          title="Iniciar Sesión"
+          visible={this.state.visible}
+          onCancel={this.handleCancel}
+          footer={[
+            <Button id="iniciar"  type="danger" onClick={this.iniciar}>Iniciar</Button>
+          ]}
+        >
+        
+          <form>
+            <label>Correo</label>
+            <Input placeholder="micorreo@hotmail.com" onChange={(e)=>this.handleChangeInput(e, 'usuario')} /> 
+            <label>Contraseña</label>
+            <Input type="password" placeholder="******" onChange={(e)=>this.handleChangeInput(e, 'pass')} />  
+            
+          </form> 
+
+
+        
+        </Modal>
+
+        <Carousel autoplay effect="fade">
+    <div className="car1">
+      <h3>A un click del éxito!</h3>
+    </div>
+    <div className="car2">
+      <h3>Tú nos importas</h3>
+    </div>
+    <div className="car3">
+      <h3>Somos PoliJobs</h3>
+    </div>
+   
+  </Carousel>
+           
+          </div>
+        );
+      }
 }
 
+const LoginForm = Form.create({ name: 'loginform' })(Login);
 
-
-
-
-export default Login; 
+export default LoginForm;  
