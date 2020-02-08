@@ -12,9 +12,6 @@
         return response.json();
     };
    
-    
-       
-
 
 const Ofertas = {
     getOferta
