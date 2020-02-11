@@ -4,7 +4,7 @@ import Ofertas from '../services/ofertas';
 import MenuSup from '../componentes/MenuSup';
 
 
-class Home extends React.Component{
+class Showofert extends React.Component{
     state={
         tarrOfertas:[],
         arrOfertas:[]
@@ -22,7 +22,7 @@ class Home extends React.Component{
     render(){
     return(
     <div>
-        <MenuSup/>
+        
         <h1>Bienvenido!</h1>
         <h3>OFERTAS</h3>
         {this.state.arrOfertas.map((item,index)=>(
@@ -40,4 +40,4 @@ class Home extends React.Component{
     
 }
 
-export default Home; 
+export default Showofert; 
