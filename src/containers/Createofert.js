@@ -9,22 +9,22 @@ import Time from "../services/SearchTime";
 import Ofertas from '../services/ofertas';
 
 
-class Createofert extends React.Component{
-    state ={
-        tarrCarrera:[],
-        arrCarrera:[],
-        tarrDay:[],
-        arrDay:[],
-        tarrTipo:[],
-        arrTipo:[],
-        tarrHorario:[],
-        arrHorario:[],
-        tarrTime:[],
-        arrTime:[],
-        nomEmpresa:"Wiam",
-        conocimientos:"",
-        descripcion:"",
-        salario:0,
+class Createofert extends React.Component {
+    state = {
+        tarrCarrera: [],
+        arrCarrera: [],
+        tarrDay: [],
+        arrDay: [],
+        tarrTipo: [],
+        arrTipo: [],
+        tarrHorario: [],
+        arrHorario: [],
+        tarrTime: [],
+        arrTime: [],
+        nomEmpresa: "Wiam",
+        conocimientos: "",
+        descripcion: "",
+        salario: 0,
         horarios: "2020-02-10T09:00:00+01:00"
     };
 
@@ -35,15 +35,13 @@ class Createofert extends React.Component{
         this.setState(newState);
         console.log(input, $e.target.value);
     };
-    
-    crear=()=>{  
-        Ofertas.createOfert(this.state.nomEmpresa, this.state.conocimientos, this.state.descripcion, this.state.salario*1,);
-         
-          //Auth.login(this.state.usuario, this.state.pass); 
-                
-      }
 
-    async componentDidMount(){
+    crear = () => {
+        Ofertas.createOfert(this.state.nomEmpresa, this.state.conocimientos, this.state.descripcion, this.state.salario * 1,);
+        //Auth.login(this.state.usuario, this.state.pass);
+    }
+
+    async componentDidMount() {
         this.setState({tarrCarrera: await Carrera.getCarrera()});
         this.setState({arrCarrera: this.state.tarrCarrera['hydra:member']});
         this.setState({tarrDay: await Day.getDay()});
@@ -57,46 +55,44 @@ class Createofert extends React.Component{
     }
 
 
-  
-
-    render(){
-        return(
-            <div className="SeeOfert" >
+    render() {
+        return (
+            <div className="SeeOfert">
                 <div className="ContenedorOfertas">
-                    <h1 className="Leters" >Crear Ofertas</h1>
+                    <h1 className="Leters">Crear Ofertas</h1>
                     <div>
                         <label className="Leters">Nombre empresa</label>
                     </div>
                     <div>
-                        <input onChange={(e)=>this.handleChangeInput(e, 'nomEmpresa')} size={50}/>
+                        <input onChange={(e) => this.handleChangeInput(e, 'nomEmpresa')} size={50}/>
                     </div>
                     <div>
-                        <label  className="Leters">Conocimientos</label>
+                        <label className="Leters">Conocimientos</label>
                     </div>
                     <div>
-                        <input onChange={(e)=>this.handleChangeInput(e, 'conocimientos')} size={50}/>
+                        <input onChange={(e) => this.handleChangeInput(e, 'conocimientos')} size={50}/>
                     </div>
                     <div>
                         <label className="Leters">Descripcion</label>
                     </div>
                     <div>
-                        <input onChange={(e)=>this.handleChangeInput(e, 'descripcion')} size={50}/>
+                        <input onChange={(e) => this.handleChangeInput(e, 'descripcion')} size={50}/>
                     </div>
                     <div>
                         <label className="Leters">Salario</label>
                     </div>
                     <div>
-                        <input onChange={(e)=>this.handleChangeInput(e, 'salario')} size={50}/>
+                        <input onChange={(e) => this.handleChangeInput(e, 'salario')} size={50}/>
                     </div>
-                   
-                
+
+
                     <div>
                         <label className="Leters">Tipo de oferta</label>
                     </div>
                     <div className="task-cards">
                         <select name="select">
-                            {this.state.arrTipo.map((item,index)=>(
-                                <option value={index+1}>{item.name}</option>
+                            {this.state.arrTipo.map((item, index) => (
+                                <option value={index + 1}>{item.name}</option>
 
 
                             ))}
@@ -107,8 +103,8 @@ class Createofert extends React.Component{
                     </div>
                     <div>
                         <select name="select">
-                            {this.state.arrTime.map((item,index)=>(
-                                <option value={index+1}>{item.name}</option>
+                            {this.state.arrTime.map((item, index) => (
+                                <option value={index + 1}>{item.name}</option>
 
 
                             ))}
@@ -119,10 +115,8 @@ class Createofert extends React.Component{
                     </div>
                     <div>
                         <select name="select">
-                            {this.state.arrCarrera.map((item,index)=>(
-                                <option value={index+1}>{item.name}</option>
-
-
+                            {this.state.arrCarrera.map((item, index) => (
+                                <option value={index + 1}>{item.name}</option>
                             ))}
                         </select>
                     </div>
@@ -131,10 +125,8 @@ class Createofert extends React.Component{
                     </div>
                     <div>
                         <select name="select">
-                            {this.state.arrHorario.map((item,index)=>(
-                                <option value={index+1}>{item.name}</option>
-
-
+                            {this.state.arrHorario.map((item, index) => (
+                                <option value={index + 1}>{item.name}</option>
                             ))}
                         </select>
                     </div>
@@ -143,19 +135,18 @@ class Createofert extends React.Component{
                     </div>
                     <div>
                         <select name="select">
-                            {this.state.arrDay.map((item,index)=>(
-                                <option value={index+1}>{item.name}</option>
+                            {this.state.arrDay.map((item, index) => (
+                                <option value={index + 1}>{item.name}</option>
 
 
                             ))}
                         </select>
                     </div>
                     <div>
-                        <button onClick={this.crear} >CREAR OFERTA</button>
+                        <button onClick={this.crear}>CREAR OFERTA</button>
                     </div>
 
                 </div>
-
 
 
             </div>
@@ -164,4 +155,5 @@ class Createofert extends React.Component{
     }
 
 }
+
 export default Createofert;
