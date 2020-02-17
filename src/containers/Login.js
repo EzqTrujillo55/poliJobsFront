@@ -112,7 +112,7 @@ class Login extends React.Component{
         style={{ lineHeight: '64px' }}
       >
         <Menu.Item key="1">Polijobs</Menu.Item>
-        <Menu.Item key="2" style={{ marginLeft:"82%" }} onClick={this.showModal2}>Registrarse</Menu.Item>
+        <Menu.Item key="2" style={{ marginLeft:"75%" }} onClick={this.showModal2}>Registrarse</Menu.Item>
         <Menu.Item key="3"  onClick={this.showModal}>Iniciar Sesión</Menu.Item>
       </Menu>          
 

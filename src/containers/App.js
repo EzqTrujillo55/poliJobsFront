@@ -6,6 +6,7 @@ import LoginForm from "./Login";
 import Createofert from "./Createofert";
 import MenuSup from "../componentes/MenuSup";
 import Showofert from "./Showofert";
+import ListaOfertas from "../componentes/Ofertas";
 
 var token = localStorage.getItem("token");
 var contenido;
@@ -19,10 +20,10 @@ class App extends React.Component {
       contenido = (
         <BrowserRouter>
           <MenuSup />
-          <Route exact path="/home" component={Showofert} />
+          <Route exact path="/home" component={ListaOfertas} />
           <Route path="/ficha/:id" />
           <Route path="/crearOferta" component={Createofert} />
-          <Route path="/verOfertas" component={Showofert} />
+          <Route path="/verOfertas" component={ListaOfertas} />
         </BrowserRouter>
       );
     }

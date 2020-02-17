@@ -1,7 +1,10 @@
 import React from 'react';
  import {Button} from 'antd';
 import Ofertas from '../services/ofertas';
-import MenuSup from '../componentes/MenuSup';
+import ListaOfertas from "../componentes/Ofertas";
+import Ficha from "../componentes/Ficha";
+import {Route, BrowserRouter} from 'react-router-dom';
+
 
 
 class Showofert extends React.Component{
@@ -16,15 +19,18 @@ class Showofert extends React.Component{
         console.log('listo' , this.state.arrOfertas);
     }
 
-
-    
-
     render(){
     return(
     <div>
         
         <h1>Bienvenido!</h1>
-        <h3>OFERTAS</h3>
+        <h3 align="center"> LISTA DE  OFERTAS</h3>
+
+        <BrowserRouter>
+            <Ofertas/>
+            <Route patch='/ficha/:id' component={Ficha}/>
+        </BrowserRouter>
+
         {this.state.arrOfertas.map((item,index)=>(
             <div>
             <h5>{item.NombreEmpresa}</h5>
