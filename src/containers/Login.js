@@ -1,15 +1,14 @@
 import React from 'react';
-import { Form, Input, Button, Card,Menu,  Modal, Carousel, Select} from 'antd';
+import { Form, Input, Button, Card,Menu,  Modal, Carousel} from 'antd';
 import Auth from '../services/auth';
 import '../styles/Login.css';
-const { Option } = Select;
+
 class Login extends React.Component{
    state={
      usuario: '',
      pass: '',
-     rol: '',
      visible: false,
-     visible2: false
+     
    }
 
    showModal = () => {
@@ -31,27 +30,6 @@ class Login extends React.Component{
        visible: false,
      });
    };
-
-   showModal2 = () => {
-    this.setState({
-      visible2: true,
-    });
-  };
-
-  handleOk2 = e => {
-    console.log(e);
-    this.setState({
-      visible2: false,
-    });
-  };
-
-  handleCancel2 = e => {
-    console.log(e);
-    this.setState({
-      visible2: false,
-    });
-  };
-  
    
    
     iniciar=()=>{  
@@ -61,31 +39,6 @@ class Login extends React.Component{
     }
     
 
-    registrar=()=>{
-      var url = "http://localhost:8000/api/users";
-      var data = {
-        email: this.state.usuario,
-        username: this.state.usuario,
-        password: this.state.pass,
-        roles: [this.state.rol]
-      };
-  
-      fetch(url, {
-        method: "POST", // or 'PUT'
-        body: JSON.stringify(data), // data can be `string` or {object}!
-        headers: {
-          "Content-Type": "application/json",
-          
-        }
-      })
-        .then(res => res.json())
-        .catch(error => {
-          console.error("Error:", error);
-          
-        })
-        .then( console.log("aa"));
-    }
-
     
     handleChangeInput = ($e, input) => {
       const newState = {};
@@ -93,11 +46,6 @@ class Login extends React.Component{
       this.setState(newState);
       
   };
-
-  handleChange(value) {
-    this.state.rol = value;
-    console.log(value);
-  }
 
 
       render() {
@@ -108,12 +56,11 @@ class Login extends React.Component{
       <Menu
         theme="dark"
         mode="horizontal"
-        
+        defaultSelectedKeys={['3']}
         style={{ lineHeight: '64px' }}
       >
         <Menu.Item key="1">Polijobs</Menu.Item>
-        <Menu.Item key="2" style={{ marginLeft:"75%" }} onClick={this.showModal2}>Registrarse</Menu.Item>
-        <Menu.Item key="3"  onClick={this.showModal}>Iniciar Sesión</Menu.Item>
+        <Menu.Item key="2" onClick={this.showModal}>Iniciar Sesión</Menu.Item>
       </Menu>          
 
       <Modal
@@ -130,34 +77,10 @@ class Login extends React.Component{
             <Input placeholder="micorreo@hotmail.com" onChange={(e)=>this.handleChangeInput(e, 'usuario')} /> 
             <label>Contraseña</label>
             <Input type="password" placeholder="******" onChange={(e)=>this.handleChangeInput(e, 'pass')} />  
-          
-          </form> 
-        
-        </Modal>
-
-        
-      <Modal
-          title="Registrar Usuario"
-          visible={this.state.visible2}
-          onCancel={this.handleCancel2}
-          footer={[
-            <Button id="registrar"  type="danger" onClick={this.registrar}>Registrar</Button>
-          ]}
-        >
-        
-          <form>
-            <label>Correo</label>
-            <Input placeholder="micorreo@hotmail.com" onChange={(e)=>this.handleChangeInput(e, 'usuario')} /> 
-            <label>Contraseña</label>
-            <Input type="password" placeholder="******" onChange={(e)=>this.handleChangeInput(e, 'pass')} />
-            <label>Rol</label>
-            <Select onChange={this.handleChange.bind(this)} style={{ width: 120 }}>
-                <Option value="Empresa">Empresa</Option>
-                <Option value="Estudiante">Estudiante</Option>
-            </Select>
             
-          
           </form> 
+
+
         
         </Modal>
 

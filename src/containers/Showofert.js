@@ -1,10 +1,7 @@
 import React from 'react';
  import {Button} from 'antd';
 import Ofertas from '../services/ofertas';
-import ListaOfertas from "../componentes/Ofertas";
-import Ficha from "../componentes/Ficha";
-import {Route, BrowserRouter} from 'react-router-dom';
-
+import MenuSup from '../componentes/MenuSup';
 
 
 class Showofert extends React.Component{
@@ -24,13 +21,7 @@ class Showofert extends React.Component{
     <div>
         
         <h1>Bienvenido!</h1>
-        <h3 align="center"> LISTA DE  OFERTAS</h3>
-
-        <BrowserRouter>
-            <Ofertas/>
-            <Route patch='/ficha/:id' component={Ficha}/>
-        </BrowserRouter>
-
+        <h3>OFERTAS</h3>
         {this.state.arrOfertas.map((item,index)=>(
             <div>
             <h5>{item.NombreEmpresa}</h5>
